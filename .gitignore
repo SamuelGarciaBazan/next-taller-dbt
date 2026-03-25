@@ -12,3 +12,4 @@ venv/
 env/
 **/*.duckdb
 **/*.duckdb.wal
+jaffle_shop.duckdb
