@@ -1,0 +1,36 @@
+version: 2
+
+models:
+  - name: int_payment_status_summary
+    description: '{{ doc("payment_status_summary") }}'
+
+    columns:
+      - name: status
+        data_type: varchar
+        description: '{{ doc("orders_status") }}'
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['placed', 'shipped', 'completed', 'return_pending', 'returned']
+
+      - name: payment_method
+        data_type: varchar
+        description: '{{ doc("payment_method") }}'
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['credit_card', 'coupon', 'bank_transfer', 'gift_card']
+
+      - name: total_amount
+        data_type: double
+        description: Total amount received in AUD for this order-status and payment-method combination
+        tests:
+          - not_null
+
+      - name: payment_count
+        data_type: bigint
+        description: Number of payment records included in this order-status and payment-method combination
+        tests:
+          - not_null
